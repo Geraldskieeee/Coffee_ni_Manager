@@ -163,7 +163,7 @@ $isLoggedIn = isset($_SESSION['user_email']);
             <h2 class="text-2xl font-serif mb-6 text-center">Get in Touch</h2>
             
             <?php if($isLoggedIn): ?>
-                <form action="send_email.php" method="POST" class="flex flex-col gap-4">
+             <form onsubmit="event.preventDefault(); alert('This is a static UI demo. Order processing is disabled.');" class="flex flex-col gap-4">
                     
                     <select name="inquiry_type" id="inquiry_type" onchange="toggleDeliveryFields()" required class="bg-transparent border border-gray-600 p-3 rounded text-white focus:outline-none focus:border-earthyBeige cursor-pointer">
                         <option value="General Inquiry" class="bg-darkbg text-white">General Inquiry</option>
@@ -346,7 +346,7 @@ $isLoggedIn = isset($_SESSION['user_email']);
                 <h2 class="font-serif text-3xl text-earthyBeige mb-2">Sign In</h2>
                 <p class="text-gray-400 text-sm mb-6">Log in to send us a message.</p>
                 
-                <form action="login.php" method="POST" class="flex flex-col gap-4">
+            <form onsubmit="event.preventDefault(); alert('This is a static UI demo. Backend login is disabled.');" class="flex flex-col gap-4">
                     <input type="email" name="email" placeholder="Email Address" required class="bg-transparent border border-gray-600 p-3 rounded text-white focus:outline-none focus:border-earthyBeige">
                     <input type="password" name="password" placeholder="Password" required class="bg-transparent border border-gray-600 p-3 rounded text-white focus:outline-none focus:border-earthyBeige">
                     <button type="submit" class="bg-earthyBeige text-darkbg rounded px-6 py-3 font-semibold hover:bg-opacity-90 transition-all mt-2">Log In</button>
