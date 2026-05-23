@@ -245,12 +245,7 @@ $isLoggedIn = isset($_SESSION['user_email']);
                     <textarea name="message" id="message_input" rows="3" placeholder="Your Message" required class="bg-transparent border border-gray-600 p-3 rounded text-white focus:outline-none focus:border-earthyBeige"></textarea>
                     <button type="submit" id="submit_btn" class="bg-earthyBeige text-darkbg rounded px-6 py-3 font-semibold hover:bg-opacity-90 transition-all mt-2">Send Message</button>
                 </form>
-            <?php else: ?>
-                <div class="text-center bg-[#1e1e1e] p-8 rounded-lg border border-gray-800">
-                    <p class="text-gray-400 mb-6">Please log in or sign up to send us a direct message or place an order.</p>
-                    <button onclick="toggleLogin()" class="bg-earthyBeige text-darkbg rounded px-8 py-3 font-semibold hover:bg-opacity-90 transition-all">Log In / Sign Up</button>
-                </div>
-            <?php endif; ?>
+            
 
         </div>
     </section>
