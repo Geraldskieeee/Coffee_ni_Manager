@@ -171,7 +171,7 @@ $isLoggedIn = isset($_SESSION['user_email']);
                     </select>
 
                     <input type="text" name="name" placeholder="Your Name" required class="bg-transparent border border-gray-600 p-3 rounded text-white focus:outline-none focus:border-earthyBeige">
-                    <input type="email" name="email" value="<?= htmlspecialchars($_SESSION['user_email']) ?>" readonly required class="bg-transparent border border-gray-600 p-3 rounded text-gray-500 focus:outline-none cursor-not-allowed" title="Email is tied to your account">
+                  
                     
                     <div id="delivery_fields" class="hidden flex-col gap-4">
                         
@@ -210,7 +210,7 @@ $isLoggedIn = isset($_SESSION['user_email']);
                             
                             <select name="barangay" id="barangay_input" class="bg-transparent border border-gray-600 p-3 rounded text-white focus:outline-none focus:border-earthyBeige cursor-pointer w-full md:w-1/2">
                                 <option value="" disabled selected class="bg-darkbg text-gray-400">Select Barangay</option>
-                                <option value="Asuncion" class="bg-darkbg text-white">Asuncion</option>
+                     
                                 <option value="Bacsil" class="bg-darkbg text-white">Bacsil</option>
                                 <option value="Baliw" class="bg-darkbg text-white">Baliw</option>
                                 <option value="Bantayan" class="bg-darkbg text-white">Bantayan</option>
@@ -234,9 +234,8 @@ $isLoggedIn = isset($_SESSION['user_email']);
                                 <option value="Resurreccion" class="bg-darkbg text-white">Resurreccion</option>
                                 <option value="Sabangan" class="bg-darkbg text-white">Sabangan</option>
                                 <option value="San Isidro" class="bg-darkbg text-white">San Isidro</option>
-                                <option value="San Jose" class="bg-darkbg text-white">San Jose</option>
-                                <option value="San Juan" class="bg-darkbg text-white">San Juan</option>
-                                <option value="Santa Maria" class="bg-darkbg text-white">Santa Maria</option>
+                             
+                       
                                 <option value="Solot-solot" class="bg-darkbg text-white">Solot-solot</option>
                             </select>
                         </div>
@@ -337,7 +336,7 @@ $isLoggedIn = isset($_SESSION['user_email']);
         </div>
     </div>
 
-    <div id="login-overlay" class="fixed inset-0 z-[80] hidden bg-black/80 backdrop-blur-sm justify-center items-center transition-opacity opacity-0 duration-300 p-4">
+    <!-- <div id="login-overlay" class="fixed inset-0 z-[80] hidden bg-black/80 backdrop-blur-sm justify-center items-center transition-opacity opacity-0 duration-300 p-4">
         <div id="login-panel" class="bg-darkbg w-full max-w-md rounded-xl shadow-2xl border border-gray-800 p-8 flex flex-col transform scale-95 transition-transform duration-300 relative overflow-hidden">
             
             <button onclick="toggleLogin()" class="absolute top-6 right-6 text-gray-400 hover:text-white text-3xl leading-none">&times;</button>
@@ -368,7 +367,7 @@ $isLoggedIn = isset($_SESSION['user_email']);
             </div>
 
         </div>
-    </div>
+    </div> -->
 
     <div id="toast-container" class="fixed inset-0 z-[100] hidden flex items-center justify-center pointer-events-none bg-black/40 backdrop-blur-sm transition-opacity duration-300 opacity-0">
         <div id="toast-message" class="bg-earthyBeige text-darkbg px-8 py-5 rounded-xl shadow-2xl font-serif text-2xl font-bold transform scale-50 opacity-0 transition-all duration-500 flex items-center gap-4">
