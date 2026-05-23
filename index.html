@@ -51,11 +51,7 @@ $isLoggedIn = isset($_SESSION['user_email']);
                 
                 <a href="#order" class="hover:text-white transition-colors duration-300">Menu</a>
 
-                <?php if($isLoggedIn): ?>
-                    <a href="logout.php" class="border border-earthyBeige text-earthyBeige rounded-full px-5 py-2 hover:bg-earthyBeige hover:text-darkbg transition-all duration-300">Logout</a>
-                <?php else: ?>
-                    <button onclick="toggleLogin()" class="border border-gray-500 rounded-full px-6 py-2 hover:bg-gray-800 hover:text-white transition-all duration-300">Login</button>
-                <?php endif; ?>
+                
             </div>
         </nav>
     </header>
