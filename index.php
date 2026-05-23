@@ -1,0 +1,540 @@
+<?php
+session_start();
+// Check if our session variable exists
+$isLoggedIn = isset($_SESSION['user_email']);
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coffee Ni Manager</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Playfair+Display:ital,wght@0,600;0,700;1,500&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Enables smooth scrolling for navigation links */
+        html { scroll-behavior: smooth; }
+    </style>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        darkbg: '#161616',
+                        earthyBeige: '#f5deb3',
+                        textOffWhite: '#fdfbf7'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-darkbg text-textOffWhite min-h-screen flex flex-col font-sans">
+
+    <header class="fixed top-0 left-0 w-full z-50 bg-[#161616]/80 backdrop-blur-md border-b border-gray-800">
+        <nav class="flex items-center justify-between px-8 py-5 max-w-7xl mx-auto w-full">
+            <div class="text-xl font-bold tracking-widest uppercase text-white">
+               <a href="#main">Coffee Ni Manager</a> 
+            </div>
+           <div class="hidden md:flex items-center space-x-8 text-sm font-medium text-gray-300">
+                <a href="#about" class="hover:text-white transition-colors duration-300">About</a>
+                <a href="#visit" class="hover:text-white transition-colors duration-300">Visit</a>
+                <a href="#contact" class="hover:text-white transition-colors duration-300">Contact</a>
+                
+                <a href="#order" class="hover:text-white transition-colors duration-300">Menu</a>
+
+                <?php if($isLoggedIn): ?>
+                    <a href="logout.php" class="border border-earthyBeige text-earthyBeige rounded-full px-5 py-2 hover:bg-earthyBeige hover:text-darkbg transition-all duration-300">Logout</a>
+                <?php else: ?>
+                    <button onclick="toggleLogin()" class="border border-gray-500 rounded-full px-6 py-2 hover:bg-gray-800 hover:text-white transition-all duration-300">Login</button>
+                <?php endif; ?>
+            </div>
+        </nav>
+    </header>
+
+    <main id="main" class="flex-grow flex flex-col justify-center px-8 md:px-16 max-w-7xl mx-auto w-full pt-36 pb-20">
+        <div class="max-w-3xl">
+            <h1 class="font-serif text-5xl md:text-6xl lg:text-7xl leading-tight mb-8">
+                Enjoy our expertly<br>
+                crafted coffee in<br>
+                a warm, welcoming<br>
+                space.
+            </h1>
+            <div class="text-earthyBeige font-serif text-lg md:text-xl tracking-wide mb-10">Sip · Enjoy · Relax</div>
+            <div class="flex flex-wrap gap-4">
+                <a href="#order" class="bg-earthyBeige text-darkbg rounded-full px-8 py-3 font-semibold hover:bg-opacity-90 transition-all duration-300">View Menu</a>
+                <a href="#visit" class="border border-gray-600 rounded-full px-8 py-3 font-medium hover:bg-gray-800 transition-all duration-300">Visit Us</a>
+            </div>
+        </div>
+    </main>
+
+    <section id="about" class="px-8 py-24 max-w-7xl mx-auto w-full grid md:grid-cols-2 gap-12 items-center">
+        <div>
+            <h2 class="font-serif text-4xl mb-6">Our Story</h2>
+            <p class="text-gray-400 leading-relaxed mb-6">Step into a warm, welcoming space where the aroma of freshly roasted beans meets a genuine sense of community. We pride ourselves on crafting exceptional coffee using thoughtfully sourced, high-quality beans to ensure every pour is perfect.</p>
+            <p class="text-gray-400 leading-relaxed">Whether you need a quiet corner to focus, a cozy spot to catch up with friends, or just a quick artisanal brew to fuel your morning commute, our dedicated baristas are here to make you feel right at home.</p>
+        </div>
+        <div class="h-96 bg-[#1e1e1e] rounded-lg border border-gray-800 flex items-center justify-center overflow-hidden">
+             <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?q=80&w=1000&auto=format&fit=crop" alt="Coffee Shop" class="w-full h-full object-cover opacity-70 hover:opacity-100 transition-opacity duration-500">
+        </div>
+    </section>
+
+    <section id="order" class="py-24 bg-[#111111] border-y border-gray-800 mt-12">
+        <div id="menu" class="px-8 max-w-7xl mx-auto w-full">
+            <div class="text-center mb-16">
+                <h2 class="font-serif text-4xl mb-4">Our Menu</h2>
+                <div class="text-earthyBeige font-serif italic tracking-wide">Our Best Sellers</div>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="relative bg-[#1a1a1a] border border-gray-800 rounded-lg hover:border-earthyBeige transition-colors duration-300 overflow-hidden group">
+                    <img src="https://images.unsplash.com/photo-1510591509098-f4fdc6d0ff04?auto=format&fit=crop&w=500&q=80" alt="Espresso" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500">
+                    <div class="absolute top-0 right-0 z-10 bg-earthyBeige text-darkbg text-xs font-bold px-3 py-1 rounded-bl-lg">Best Seller</div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-medium">Espresso</h3>
+                            <span class="text-earthyBeige font-semibold">₱120</span>
+                        </div>
+                        <p class="text-sm text-gray-500">Rich, full-bodied espresso with a perfect, golden crema.</p>
+                    </div>
+                </div>
+
+                <div class="relative bg-[#1a1a1a] border border-gray-800 rounded-lg hover:border-earthyBeige transition-colors duration-300 overflow-hidden group">
+                    <img src="https://images.unsplash.com/photo-1572442388796-11668a67e53d?auto=format&fit=crop&w=500&q=80" alt="Cappuccino" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500">
+                    <div class="absolute top-0 right-0 z-10 bg-earthyBeige text-darkbg text-xs font-bold px-3 py-1 rounded-bl-lg">Best Seller</div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-medium">Cappuccino</h3>
+                            <span class="text-earthyBeige font-semibold">₱150</span>
+                        </div>
+                        <p class="text-sm text-gray-500">A double shot of espresso layered with thick, velvety steamed milk.</p>
+                    </div>
+                </div>
+
+                <div class="relative bg-[#1a1a1a] border border-gray-800 rounded-lg hover:border-earthyBeige transition-colors duration-300 overflow-hidden group">
+                    <img src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?auto=format&fit=crop&w=500&q=80" alt="Cold Brew" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500">
+                    <div class="absolute top-0 right-0 z-10 bg-earthyBeige text-darkbg text-xs font-bold px-3 py-1 rounded-bl-lg">Best Seller</div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-medium">Cold Brew</h3>
+                            <span class="text-earthyBeige font-semibold">₱160</span>
+                        </div>
+                        <p class="text-sm text-gray-500">Slow-steeped for 18 hours for a uniquely smooth, refreshing finish.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-12 flex justify-center">
+                <button onclick="toggleFullMenu()" class="text-gray-400 hover:text-earthyBeige flex items-center gap-2 transition-colors duration-300 text-lg border-b border-transparent hover:border-earthyBeige pb-1">
+                    View Full Menu 
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </section>
+
+   <section id="visit" class="px-8 py-24 max-w-5xl mx-auto w-full text-center">
+        <h2 class="font-serif text-4xl mb-12">Visit Us</h2>
+        
+        <div class="grid md:grid-cols-2 gap-12 mb-12">
+            <div class="p-8 bg-[#1e1e1e] rounded-lg border border-gray-800">
+                <h3 class="text-earthyBeige text-lg font-medium mb-4">Location</h3>
+                <p class="text-gray-400">Washington St. <br>Resurreccion, San Juan, Ilocos Sur</p>
+            </div>
+            <div class="p-8 bg-[#1e1e1e] rounded-lg border border-gray-800">
+                <h3 class="text-earthyBeige text-lg font-medium mb-4">Hours</h3>
+                <p class="text-gray-400">Monday - Saturday: 7:00 AM - 8:00 PM<br>Sunday: Close </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="px-8 py-16 bg-black bg-opacity-50 mt-12">
+        <div class="max-w-xl mx-auto">
+            <h2 class="text-2xl font-serif mb-6 text-center">Get in Touch</h2>
+            
+            <?php if($isLoggedIn): ?>
+                <form action="send_email.php" method="POST" class="flex flex-col gap-4">
+                    
+                    <select name="inquiry_type" id="inquiry_type" onchange="toggleDeliveryFields()" required class="bg-transparent border border-gray-600 p-3 rounded text-white focus:outline-none focus:border-earthyBeige cursor-pointer">
+                        <option value="General Inquiry" class="bg-darkbg text-white">General Inquiry</option>
+                        <option value="Delivery Order" class="bg-darkbg text-white">Order Coffee for Delivery</option>
+                    </select>
+
+                    <input type="text" name="name" placeholder="Your Name" required class="bg-transparent border border-gray-600 p-3 rounded text-white focus:outline-none focus:border-earthyBeige">
+                    <input type="email" name="email" value="<?= htmlspecialchars($_SESSION['user_email']) ?>" readonly required class="bg-transparent border border-gray-600 p-3 rounded text-gray-500 focus:outline-none cursor-not-allowed" title="Email is tied to your account">
+                    
+                    <div id="delivery_fields" class="hidden flex-col gap-4">
+                        
+                        <div class="bg-[#1a1a1a] p-4 rounded border border-gray-600">
+                            <label class="text-earthyBeige font-semibold mb-3 block">Choose Your Coffee:</label>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm text-gray-300">
+                                <label class="cursor-pointer hover:text-white"><input type="radio" name="coffee_choice" value="Espresso (₱120)" class="mr-2 accent-earthyBeige"> Espresso (₱120)</label>
+                                <label class="cursor-pointer hover:text-white"><input type="radio" name="coffee_choice" value="Cappuccino (₱150)" class="mr-2 accent-earthyBeige"> Cappuccino (₱150)</label>
+                                <label class="cursor-pointer hover:text-white"><input type="radio" name="coffee_choice" value="Cold Brew (₱160)" class="mr-2 accent-earthyBeige"> Cold Brew (₱160)</label>
+                                <label class="cursor-pointer hover:text-white"><input type="radio" name="coffee_choice" value="Americano (₱110)" class="mr-2 accent-earthyBeige"> Americano (₱110)</label>
+                                <label class="cursor-pointer hover:text-white"><input type="radio" name="coffee_choice" value="Café Latte (₱140)" class="mr-2 accent-earthyBeige"> Café Latte (₱140)</label>
+                                <label class="cursor-pointer hover:text-white"><input type="radio" name="coffee_choice" value="Mocha (₱155)" class="mr-2 accent-earthyBeige"> Mocha (₱155)</label>
+                                <label class="cursor-pointer hover:text-white"><input type="radio" name="coffee_choice" value="Caramel Macchiato (₱165)" class="mr-2 accent-earthyBeige"> Caramel Macchiato (₱165)</label>
+                                <label class="cursor-pointer hover:text-white"><input type="radio" name="coffee_choice" value="Matcha Latte (₱150)" class="mr-2 accent-earthyBeige"> Matcha Latte (₱150)</label>
+                                <label class="cursor-pointer hover:text-white"><input type="radio" name="coffee_choice" value="Flat White (₱145)" class="mr-2 accent-earthyBeige"> Flat White (₱145)</label>
+                            </div>
+                        </div>
+
+                        <div class="bg-[#1a1a1a] p-4 rounded border border-gray-600">
+                            <label class="text-earthyBeige font-semibold mb-3 block">Sugar Level:</label>
+                            <div class="flex flex-wrap gap-4 text-sm text-gray-300">
+                                <label class="cursor-pointer hover:text-white"><input type="radio" name="sugar_level" value="0%" class="mr-1 accent-earthyBeige"> 0% (None)</label>
+                                <label class="cursor-pointer hover:text-white"><input type="radio" name="sugar_level" value="25%" class="mr-1 accent-earthyBeige"> 25%</label>
+                                <label class="cursor-pointer hover:text-white"><input type="radio" name="sugar_level" value="50%" class="mr-1 accent-earthyBeige"> 50% (Half)</label>
+                                <label class="cursor-pointer hover:text-white"><input type="radio" name="sugar_level" value="75%" class="mr-1 accent-earthyBeige"> 75%</label>
+                                <label class="cursor-pointer hover:text-white"><input type="radio" name="sugar_level" value="100%" class="mr-1 accent-earthyBeige" checked> 100% (Normal)</label>
+                            </div>
+                        </div>
+
+                        <input type="number" name="cash_amount" id="cash_input" placeholder="Cash Amount Tendered (₱) for exact change" class="bg-transparent border border-gray-600 p-3 rounded text-white focus:outline-none focus:border-earthyBeige">
+
+                        <input type="text" name="phone" id="phone_input" placeholder="Phone Number (e.g., 09123456789)" class="bg-transparent border border-gray-600 p-3 rounded text-white focus:outline-none focus:border-earthyBeige">
+                        
+                        <div class="flex flex-col md:flex-row gap-4">
+                            <input type="text" name="street" id="street_input" placeholder="Street / House No. / Landmark" class="bg-transparent border border-gray-600 p-3 rounded text-white focus:outline-none focus:border-earthyBeige flex-grow">
+                            
+                            <select name="barangay" id="barangay_input" class="bg-transparent border border-gray-600 p-3 rounded text-white focus:outline-none focus:border-earthyBeige cursor-pointer w-full md:w-1/2">
+                                <option value="" disabled selected class="bg-darkbg text-gray-400">Select Barangay</option>
+                                <option value="Asuncion" class="bg-darkbg text-white">Asuncion</option>
+                                <option value="Bacsil" class="bg-darkbg text-white">Bacsil</option>
+                                <option value="Baliw" class="bg-darkbg text-white">Baliw</option>
+                                <option value="Bantayan" class="bg-darkbg text-white">Bantayan</option>
+                                <option value="Cacandongan" class="bg-darkbg text-white">Cacandongan</option>
+                                <option value="Camangaan" class="bg-darkbg text-white">Camangaan</option>
+                                <option value="Camindoroan" class="bg-darkbg text-white">Camindoroan</option>
+                                <option value="Guimod Norte" class="bg-darkbg text-white">Guimod Norte</option>
+                                <option value="Guimod Sur" class="bg-darkbg text-white">Guimod Sur</option>
+                                <option value="Immayos Norte" class="bg-darkbg text-white">Immayos Norte</option>
+                                <option value="Immayos Sur" class="bg-darkbg text-white">Immayos Sur</option>
+                                <option value="Labnig" class="bg-darkbg text-white">Labnig</option>
+                                <option value="Lapting" class="bg-darkbg text-white">Lapting</option>
+                                <option value="Legaspi" class="bg-darkbg text-white">Legaspi</option>
+                                <option value="Macillang" class="bg-darkbg text-white">Macillang</option>
+                                <option value="Malamin" class="bg-darkbg text-white">Malamin</option>
+                                <option value="Muraya" class="bg-darkbg text-white">Muraya</option>
+                                <option value="Nagsupotan" class="bg-darkbg text-white">Nagsupotan</option>
+                                <option value="Nanguman" class="bg-darkbg text-white">Nanguman</option>
+                                <option value="Pacang" class="bg-darkbg text-white">Pacang</option>
+                                <option value="Pagangpang" class="bg-darkbg text-white">Pagangpang</option>
+                                <option value="Resurreccion" class="bg-darkbg text-white">Resurreccion</option>
+                                <option value="Sabangan" class="bg-darkbg text-white">Sabangan</option>
+                                <option value="San Isidro" class="bg-darkbg text-white">San Isidro</option>
+                                <option value="San Jose" class="bg-darkbg text-white">San Jose</option>
+                                <option value="San Juan" class="bg-darkbg text-white">San Juan</option>
+                                <option value="Santa Maria" class="bg-darkbg text-white">Santa Maria</option>
+                                <option value="Solot-solot" class="bg-darkbg text-white">Solot-solot</option>
+                            </select>
+                        </div>
+                        <input type="text" value="San Juan, Ilocos Sur" readonly class="bg-transparent border border-gray-800 p-3 rounded text-gray-600 cursor-not-allowed" title="Deliveries only available in San Juan">
+                    </div>
+
+                    <textarea name="message" id="message_input" rows="3" placeholder="Your Message" required class="bg-transparent border border-gray-600 p-3 rounded text-white focus:outline-none focus:border-earthyBeige"></textarea>
+                    <button type="submit" id="submit_btn" class="bg-earthyBeige text-darkbg rounded px-6 py-3 font-semibold hover:bg-opacity-90 transition-all mt-2">Send Message</button>
+                </form>
+            <?php else: ?>
+                <div class="text-center bg-[#1e1e1e] p-8 rounded-lg border border-gray-800">
+                    <p class="text-gray-400 mb-6">Please log in or sign up to send us a direct message or place an order.</p>
+                    <button onclick="toggleLogin()" class="bg-earthyBeige text-darkbg rounded px-8 py-3 font-semibold hover:bg-opacity-90 transition-all">Log In / Sign Up</button>
+                </div>
+            <?php endif; ?>
+
+        </div>
+    </section>
+
+    <div id="menu-overlay" class="fixed inset-0 z-[60] hidden bg-black/80 backdrop-blur-sm justify-center items-center transition-opacity opacity-0 duration-300 p-4">
+        <div id="menu-panel" class="bg-darkbg w-full max-w-5xl max-h-[85vh] rounded-xl shadow-2xl border border-gray-800 flex flex-col transform scale-95 transition-transform duration-300">
+            <div class="flex justify-between items-center p-8 border-b border-gray-800">
+                <h2 class="font-serif text-3xl text-earthyBeige">Complete Menu</h2>
+                <button onclick="toggleFullMenu()" class="text-gray-400 hover:text-white text-3xl leading-none">&times;</button>
+            </div>
+            
+            <div class="flex-grow overflow-y-auto p-8">
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    
+                    <div class="bg-[#1a1a1a] border border-gray-800 rounded-lg hover:border-earthyBeige transition-colors duration-300 overflow-hidden group">
+                        <img src="https://images.unsplash.com/photo-1559525839-b184a4d698c7?auto=format&fit=crop&w=500&q=80" alt="Americano" class="w-full h-40 object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="p-5">
+                            <div class="flex justify-between items-start mb-2">
+                                <h3 class="text-lg font-medium">Americano</h3>
+                                <span class="text-earthyBeige font-semibold">₱110</span>
+                            </div>
+                            <p class="text-sm text-gray-500">Espresso smoothed out with hot water.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-[#1a1a1a] border border-gray-800 rounded-lg hover:border-earthyBeige transition-colors duration-300 overflow-hidden group">
+                        <img src="https://images.unsplash.com/photo-1570968915860-54d5c3cea6cb?auto=format&fit=crop&w=500&q=80" alt="Café Latte" class="w-full h-40 object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="p-5">
+                            <div class="flex justify-between items-start mb-2">
+                                <h3 class="text-lg font-medium">Café Latte</h3>
+                                <span class="text-earthyBeige font-semibold">₱140</span>
+                            </div>
+                            <p class="text-sm text-gray-500">Espresso balanced with steamed milk and foam.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-[#1a1a1a] border border-gray-800 rounded-lg hover:border-earthyBeige transition-colors duration-300 overflow-hidden group">
+                        <img src="https://images.unsplash.com/photo-1578314675249-a6910f80cc4e?auto=format&fit=crop&w=500&q=80" alt="Mocha" class="w-full h-40 object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="p-5">
+                            <div class="flex justify-between items-start mb-2">
+                                <h3 class="text-lg font-medium">Mocha</h3>
+                                <span class="text-earthyBeige font-semibold">₱155</span>
+                            </div>
+                            <p class="text-sm text-gray-500">Espresso combined with bittersweet chocolate.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-[#1a1a1a] border border-gray-800 rounded-lg hover:border-earthyBeige transition-colors duration-300 overflow-hidden group">
+                        <img src="https://images.unsplash.com/photo-1485808191679-5f86510681a2?auto=format&fit=crop&w=500&q=80" alt="Caramel Macchiato" class="w-full h-40 object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="p-5">
+                            <div class="flex justify-between items-start mb-2">
+                                <h3 class="text-lg font-medium">Caramel Macchiato</h3>
+                                <span class="text-earthyBeige font-semibold">₱165</span>
+                            </div>
+                            <p class="text-sm text-gray-500">Milk with vanilla, marked with espresso and caramel.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-[#1a1a1a] border border-gray-800 rounded-lg hover:border-earthyBeige transition-colors duration-300 overflow-hidden group">
+                        <img src="https://images.unsplash.com/photo-1515823662972-da6a2e4d3002?auto=format&fit=crop&w=500&q=80" alt="Matcha Latte" class="w-full h-40 object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="p-5">
+                            <div class="flex justify-between items-start mb-2">
+                                <h3 class="text-lg font-medium">Matcha Latte</h3>
+                                <span class="text-earthyBeige font-semibold">₱150</span>
+                            </div>
+                            <p class="text-sm text-gray-500">Smooth matcha lightly sweetened with milk.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-[#1a1a1a] border border-gray-800 rounded-lg hover:border-earthyBeige transition-colors duration-300 overflow-hidden group">
+                        <img src="https://images.unsplash.com/photo-1585494156145-1c60a4fae241?auto=format&fit=crop&w=500&q=80" alt="Flat White" class="w-full h-40 object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="p-5">
+                            <div class="flex justify-between items-start mb-2">
+                                <h3 class="text-lg font-medium">Flat White</h3>
+                                <span class="text-earthyBeige font-semibold">₱145</span>
+                            </div>
+                            <p class="text-sm text-gray-500">Ristretto shots with the perfect amount of milk.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="login-overlay" class="fixed inset-0 z-[80] hidden bg-black/80 backdrop-blur-sm justify-center items-center transition-opacity opacity-0 duration-300 p-4">
+        <div id="login-panel" class="bg-darkbg w-full max-w-md rounded-xl shadow-2xl border border-gray-800 p-8 flex flex-col transform scale-95 transition-transform duration-300 relative overflow-hidden">
+            
+            <button onclick="toggleLogin()" class="absolute top-6 right-6 text-gray-400 hover:text-white text-3xl leading-none">&times;</button>
+            
+            <div id="form-login" class="block">
+                <h2 class="font-serif text-3xl text-earthyBeige mb-2">Sign In</h2>
+                <p class="text-gray-400 text-sm mb-6">Log in to send us a message.</p>
+                
+                <form action="login.php" method="POST" class="flex flex-col gap-4">
+                    <input type="email" name="email" placeholder="Email Address" required class="bg-transparent border border-gray-600 p-3 rounded text-white focus:outline-none focus:border-earthyBeige">
+                    <input type="password" name="password" placeholder="Password" required class="bg-transparent border border-gray-600 p-3 rounded text-white focus:outline-none focus:border-earthyBeige">
+                    <button type="submit" class="bg-earthyBeige text-darkbg rounded px-6 py-3 font-semibold hover:bg-opacity-90 transition-all mt-2">Log In</button>
+                </form>
+                <p class="text-gray-500 text-sm text-center mt-6">Don't have an account? <button onclick="switchForm('signup')" class="text-earthyBeige hover:underline">Sign Up</button></p>
+            </div>
+
+            <div id="form-signup" class="hidden">
+                <h2 class="font-serif text-3xl text-earthyBeige mb-2">Create Account</h2>
+                <p class="text-gray-400 text-sm mb-6">Join us to stay connected.</p>
+                
+                <form action="signup.php" method="POST" class="flex flex-col gap-4">
+                    <input type="text" name="name" placeholder="Full Name" required class="bg-transparent border border-gray-600 p-3 rounded text-white focus:outline-none focus:border-earthyBeige">
+                    <input type="email" name="email" placeholder="Email Address" required class="bg-transparent border border-gray-600 p-3 rounded text-white focus:outline-none focus:border-earthyBeige">
+                    <input type="password" name="password" placeholder="Create Password" required class="bg-transparent border border-gray-600 p-3 rounded text-white focus:outline-none focus:border-earthyBeige">
+                    <button type="submit" class="bg-earthyBeige text-darkbg rounded px-6 py-3 font-semibold hover:bg-opacity-90 transition-all mt-2">Sign Up</button>
+                </form>
+                <p class="text-gray-500 text-sm text-center mt-6">Already have an account? <button onclick="switchForm('login')" class="text-earthyBeige hover:underline">Log In</button></p>
+            </div>
+
+        </div>
+    </div>
+
+    <div id="toast-container" class="fixed inset-0 z-[100] hidden flex items-center justify-center pointer-events-none bg-black/40 backdrop-blur-sm transition-opacity duration-300 opacity-0">
+        <div id="toast-message" class="bg-earthyBeige text-darkbg px-8 py-5 rounded-xl shadow-2xl font-serif text-2xl font-bold transform scale-50 opacity-0 transition-all duration-500 flex items-center gap-4">
+            <span id="toast-text"></span>
+        </div>
+    </div>
+
+    <script>
+        // ---------------- HYBRID CONTACT / ORDER FORM LOGIC ----------------
+        function toggleDeliveryFields() {
+            const type = document.getElementById('inquiry_type').value;
+            const deliveryFields = document.getElementById('delivery_fields');
+            const messageInput = document.getElementById('message_input');
+            const phoneInput = document.getElementById('phone_input');
+            const streetInput = document.getElementById('street_input');
+            const barangayInput = document.getElementById('barangay_input');
+            const cashInput = document.getElementById('cash_input');
+            const submitBtn = document.getElementById('submit_btn');
+
+            if (type === 'Delivery Order') {
+                // Show Details
+                deliveryFields.classList.remove('hidden');
+                deliveryFields.classList.add('flex');
+                
+                // Change Labels
+                messageInput.placeholder = "Order Notes (e.g., Please knock loudly)";
+                messageInput.required = false; // Notes are optional for orders
+                submitBtn.innerText = "Place Delivery Order";
+                
+                // Make Order Fields Required
+                phoneInput.required = true;
+                streetInput.required = true;
+                barangayInput.required = true;
+                cashInput.required = true;
+                
+            } else {
+                // Hide Details
+                deliveryFields.classList.add('hidden');
+                deliveryFields.classList.remove('flex');
+                
+                // Revert Labels
+                messageInput.placeholder = "Your Message";
+                messageInput.required = true; // Required for general inquiry
+                submitBtn.innerText = "Send Message";
+                
+                // Remove Required Status
+                phoneInput.required = false;
+                streetInput.required = false;
+                barangayInput.required = false;
+                cashInput.required = false;
+            }
+        }
+
+        // ---------------- TOAST NOTIFICATION LOGIC ---------------- 
+        document.addEventListener("DOMContentLoaded", () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            
+            if (urlParams.has('status')) {
+                const status = urlParams.get('status');
+                const toastContainer = document.getElementById('toast-container');
+                const toastMessage = document.getElementById('toast-message');
+
+                if (status === 'success') {
+                    toastMessage.innerHTML = `<svg class="w-8 h-8 text-green-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg> <span class="pt-1">Sent Successfully!</span>`;
+                } else if (status === 'error') {
+                    toastMessage.innerHTML = `<svg class="w-8 h-8 text-red-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M6 18L18 6M6 6l12 12"></path></svg> <span class="pt-1">Failed to send.</span>`;
+                    toastMessage.classList.replace('bg-earthyBeige', 'bg-red-200');
+                    toastMessage.classList.replace('text-darkbg', 'text-red-900');
+                } else if (status === 'unauthorized') {
+                    toastMessage.innerHTML = `<svg class="w-8 h-8 text-red-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg> <span class="pt-1">Please log in first.</span>`;
+                    toastMessage.classList.replace('bg-earthyBeige', 'bg-red-200');
+                    toastMessage.classList.replace('text-darkbg', 'text-red-900');
+                }
+
+                toastContainer.classList.remove('hidden');
+                setTimeout(() => {
+                    toastContainer.classList.remove('opacity-0');
+                    toastContainer.classList.add('opacity-100');
+                    toastMessage.classList.remove('scale-50', 'opacity-0');
+                    toastMessage.classList.add('scale-100', 'opacity-100');
+                }, 50);
+
+                setTimeout(() => {
+                    toastContainer.classList.remove('opacity-100');
+                    toastContainer.classList.add('opacity-0');
+                    toastMessage.classList.remove('scale-100', 'opacity-100');
+                    toastMessage.classList.add('scale-50', 'opacity-0');
+                    
+                    setTimeout(() => {
+                        toastContainer.classList.add('hidden');
+                    }, 300);
+                }, 3000);
+
+                window.history.replaceState(null, null, window.location.pathname);
+            }
+        });
+
+        // ---------------- MENU MODAL LOGIC ---------------- 
+        const menuOverlay = document.getElementById('menu-overlay');
+        const menuPanel = document.getElementById('menu-panel');
+
+        function toggleFullMenu() {
+            if (menuOverlay.classList.contains('hidden')) {
+                document.body.classList.add('overflow-hidden');
+                menuOverlay.classList.remove('hidden');
+                menuOverlay.classList.add('flex');
+                setTimeout(() => {
+                    menuOverlay.classList.remove('opacity-0');
+                    menuPanel.classList.remove('scale-95');
+                    menuPanel.classList.add('scale-100');
+                }, 10);
+            } else {
+                document.body.classList.remove('overflow-hidden');
+                menuOverlay.classList.add('opacity-0');
+                menuPanel.classList.remove('scale-100');
+                menuPanel.classList.add('scale-95');
+                setTimeout(() => {
+                    menuOverlay.classList.add('hidden');
+                    menuOverlay.classList.remove('flex');
+                }, 300);
+            }
+        }
+
+        // ---------------- LOGIN MODAL LOGIC ----------------
+        const loginOverlay = document.getElementById('login-overlay');
+        const loginPanel = document.getElementById('login-panel');
+
+        function toggleLogin() {
+            if (loginOverlay.classList.contains('hidden')) {
+                document.body.classList.add('overflow-hidden');
+                loginOverlay.classList.remove('hidden');
+                loginOverlay.classList.add('flex');
+                setTimeout(() => {
+                    loginOverlay.classList.remove('opacity-0');
+                    loginPanel.classList.remove('scale-95');
+                    loginPanel.classList.add('scale-100');
+                }, 10);
+            } else {
+                document.body.classList.remove('overflow-hidden');
+                loginOverlay.classList.add('opacity-0');
+                loginPanel.classList.remove('scale-100');
+                loginPanel.classList.add('scale-95');
+                setTimeout(() => {
+                    loginOverlay.classList.add('hidden');
+                    loginOverlay.classList.remove('flex');
+                }, 300);
+            }
+        }
+
+        // ---------------- FORM TOGGLE LOGIC ----------------
+        function switchForm(formType) {
+            const loginForm = document.getElementById('form-login');
+            const signupForm = document.getElementById('form-signup');
+            
+            if (formType === 'signup') {
+                loginForm.classList.add('hidden');
+                loginForm.classList.remove('block');
+                signupForm.classList.remove('hidden');
+                signupForm.classList.add('block');
+            } else {
+                signupForm.classList.add('hidden');
+                signupForm.classList.remove('block');
+                loginForm.classList.remove('hidden');
+                loginForm.classList.add('block');
+            }
+        }
+    </script>
+</body>
+</html>
